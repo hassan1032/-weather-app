@@ -1,0 +1,191 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Quicksand", sans-serif;
+}
+
+body {
+    background: #f3f2ef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-image: url("https://cdn.pixabay.com/photo/2017/05/20/20/22/clouds-2329680_1280.jpg");
+    overflow: hidden;
+}
+
+html, body {
+    font-size: 62.5%;
+    height: 100%;
+}
+
+html {
+    background: #eee;
+}
+
+/* Box styling */
+.box {
+    width: 20vw;
+    height: 60vh;
+    background: #5f73c5;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.2rem 3rem rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+    min-width: 20rem;
+    min-height: 35rem;
+    box-shadow:rgb(246 150 109) 0px 5px 26px, rgba(246 150 109) 0px 3px 10px;
+}
+
+/* Wave animation and styling */
+.wave {
+    opacity: 0.3;
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    background: white;
+    width: 50rem;
+    height: 50rem;
+    margin-left: -25rem;
+    margin-top: -25rem;
+    border-radius: 43%;
+    transform-origin: 50% 48%;
+    animation: drift 3s infinite linear;
+    z-index: 1;
+}
+
+.wave.-three {
+    animation-duration: 5s;
+    z-index: 2;
+    opacity: 0.2;
+}
+
+.wave.-two {
+    animation-duration: 7s;
+    opacity: 0.1;
+    z-index: 3;
+}
+
+@keyframes drift {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Info section styling */
+.info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45%;
+    z-index: 4;
+}
+
+/* Location styling */
+.location {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-weight: 800;
+    font-size: 3rem;
+}
+
+.fa-street-view {
+    animation: rotates 3s linear infinite alternate;
+}
+
+/* Keyframes for street view icon rotation */
+@keyframes rotates {
+    from {
+        transform: translateX(-0.5rem);
+    }
+    to {
+        transform: translateX(0.5rem);
+    }
+}
+
+/* Date styling */
+#date {
+    text-align: center;
+    margin-top: 0.5rem;
+    color: #7e0410;
+    font-size: 1.2rem;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+/* Temperature styling */
+.temp {
+    margin-top: 2.5rem;
+    text-align: center;
+    font-size: 3rem;
+}
+
+/* Temperature minimum and maximum */
+.tempmin_max {
+    text-align: center;
+    margin-top: 0.3rem;
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: #57606f;
+}
+
+/* Weather icon */
+#weathercon {
+    height: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5em;
+
+}
+
+#weathercon .fas {
+    font-size: 6rem;
+    animation: fas-anime 3s linear infinite alternate;
+}
+
+/* Keyframes for weather icon scaling */
+@keyframes fas-anime {
+    from {
+        transform: scale(1.1);
+    }
+    to {
+        transform: scale(1.5);
+    }
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 600px) {
+    .box {
+        width: 90vw;
+        height: 80vh;
+    }
+
+    .wave {
+        top: 85%;
+    }
+
+    #weathercon {
+        font-size: 5em;
+    }
+
+    .info {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-height: 500px) {
+    .box {
+        height: 80vh;
+    }
+
+    .wave {
+        top: 115%;
+    }
+}
