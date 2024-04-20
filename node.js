@@ -1,11 +1,10 @@
-require('dotenv').config();
 const http = require("http");
 const fs = require("fs");
-var requests = require("requests");
+const axios = require("axios");
+const path = require("path");
 
-
+require('dotenv').config();
 const homeFile = fs.readFileSync("home.html", "utf-8");
-
 
 const replaceVal = (tempVal, orgVal) => {
   let temperature = tempVal.replace("{%tempval%}", orgVal.main.temp);
@@ -20,27 +19,38 @@ const replaceVal = (tempVal, orgVal) => {
 
 const server = http.createServer((req, res) => {
   if (req.url == "/") {
-    requests(
-    //   `http://api.openweathermap.org/data/2.5/weather?q=Pune&units=metric&appid=${process.env.APPID}`
-    `https://api.openweathermap.org/data/2.5/weather?q=Lucknow&appid=3707d304d92f8838b6c67301d30c36b2`
-    )
-      .on("data", (chunk) => {
-        const objdata = JSON.parse(chunk);
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Lucknow&appid=3707d304d92f8838b6c67301d30c36b2`)
+      .then(response => {
+        const objdata = response.data;
         const arrData = [objdata];
-        // console.log(arrData[0].main.temp);
-        const realTimeData = arrData
-          .map((val) => replaceVal(homeFile, val))
-          .join("");
+        const realTimeData = arrData.map(val => replaceVal(homeFile, val)).join("");
+        res.writeHead(200, { 'Content-Type': 'text/html' });
         res.write(realTimeData);
-        // console.log(realTimeData);
-      })
-      .on("end", (err) => {
-        if (err) return console.log("connection closed due to errors", err);
         res.end();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end("Error fetching weather data");
       });
+  } else if (req.url === '/style.css') {
+    fs.readFile(path.join(__dirname, 'style.css'), (err, data) => {
+      if (err) {
+        res.writeHead(404, { 'Content-Type': 'text/css' });
+        res.end("404 Not Found");
+      } else {
+        res.writeHead(200, { 'Content-Type': 'text/css' });
+        res.write(data);
+        res.end();
+      }
+    });
   } else {
+    res.writeHead(404, { 'Content-Type': 'text/html' });
     res.end("File not found");
   }
 });
 
-server.listen(8000, "127.0.0.1");
+// server.listen(8000, "127.0.0.1");
+server.listen(8000, "127.0.0.1", () => {
+  console.log('Server is running at http://127.0.0.1:8000/');
+});
