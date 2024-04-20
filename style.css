@@ -29,7 +29,7 @@ html {
 .box {
     width: 20vw;
     height: 60vh;
-    background: #5f73c5;
+    background: #01153a;
     border-radius: 0.5rem;
     box-shadow: 0 0.2rem 3rem rgba(0, 0, 0, 0.2);
     position: relative;
@@ -37,7 +37,7 @@ html {
     transform: translate3d(0, 0, 0);
     min-width: 20rem;
     min-height: 35rem;
-    box-shadow:rgb(246 150 109) 0px 5px 26px, rgba(246 150 109) 0px 3px 10px;
+    box-shadow: 0px 5px 26px, 0px 3px 10px;
 }
 
 /* Wave animation and styling */
@@ -111,28 +111,44 @@ html {
 
 /* Date styling */
 #date {
+    font-family: cursive;
     text-align: center;
     margin-top: 0.5rem;
-    color: #7e0410;
+    color: #041944;
     font-size: 1.2rem;
     font-weight: 300;
     text-transform: uppercase;
 }
+
+.location{
+    font-family: cursive;
+    margin-top: 1.5rem;
+    text-align: center;
+    font-weight: 800;
+    font-size: 3rem;
+    color: #5e5e18
+}
+
+
+
 
 /* Temperature styling */
 .temp {
     margin-top: 2.5rem;
     text-align: center;
     font-size: 3rem;
+    font-family: cursive;
+    font-weight: 600;
+    color: #01153a;
 }
 
 /* Temperature minimum and maximum */
 .tempmin_max {
     text-align: center;
-    margin-top: 0.3rem;
-    font-weight: 300;
-    font-size: 1.2rem;
-    color: #57606f;
+    color: #0a1e48;
+    font-family: cursive;
+    font-size: small;
+    font-weight: 600;
 }
 
 /* Weather icon */

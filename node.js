@@ -18,15 +18,14 @@ const replaceVal = (tempVal, orgVal) => {
 };
 
 const server = http.createServer((req, res) => {
-  if (req.url == "/") {
+  if (req.url === "/") {
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Lucknow&appid=3707d304d92f8838b6c67301d30c36b2`)
       .then(response => {
         const objdata = response.data;
         const arrData = [objdata];
         const realTimeData = arrData.map(val => replaceVal(homeFile, val)).join("");
         res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(realTimeData);
-        res.end();
+        res.end(realTimeData);
       })
       .catch(error => {
         console.error('Error:', error);
@@ -34,14 +33,15 @@ const server = http.createServer((req, res) => {
         res.end("Error fetching weather data");
       });
   } else if (req.url === '/style.css') {
-    fs.readFile(path.join(__dirname, 'style.css'), (err, data) => {
+    const cssPath = path.join(__dirname, 'style.css');
+    fs.readFile(cssPath, (err, data) => {
       if (err) {
+        console.error('Error:', err);
         res.writeHead(404, { 'Content-Type': 'text/css' });
         res.end("404 Not Found");
       } else {
         res.writeHead(200, { 'Content-Type': 'text/css' });
-        res.write(data);
-        res.end();
+        res.end(data);
       }
     });
   } else {
