@@ -44,6 +44,18 @@ const server = http.createServer((req, res) => {
         res.end(data);
       }
     });
+  }else if(req.url === "/index.js"){
+    const jsPath = path.join(__dirname, 'index.js');
+    fs.readFile(jsPath, (err, data) => {
+      if (err) {
+        console.error('Error:', err);
+        res.writeHead(404, { 'Content-Type': 'text/javascript' });
+        res.end("404 Not Found");
+      } else {
+        res.writeHead(200, { 'Content-Type': 'text/javascript' });
+        res.end(data);
+      }
+    });
   } else {
     res.writeHead(404, { 'Content-Type': 'text/html' });
     res.end("File not found");
