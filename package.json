@@ -1,15 +1,16 @@
 {
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "New Weather app with using FS",
+  "main": "app.js",
   "dependencies": {
     "axios": "^1.6.8",
     "dotenv": "^16.4.5"
   },
-  "name": "weather-app",
-  "description": "��#\u0000 \u0000-\u0000w\u0000e\u0000a\u0000t\u0000h\u0000e\u0000r\u0000-\u0000a\u0000p\u0000p\u0000\r\u0000 \u0000",
-  "version": "1.0.0",
-  "main": "Node.js",
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
-  "author": "Hassan khan",
+  "author": "Hassan Khan",
   "license": "ISC"
 }
