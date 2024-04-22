@@ -2,6 +2,7 @@ const http = require("http");
 const fs = require("fs");
 const axios = require("axios");
 const path = require("path");
+const PORT = 5000;
 
 require('dotenv').config();
 const homeFile = fs.readFileSync("home.html", "utf-8");
@@ -62,6 +63,6 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(8000, "127.0.0.1", () => {
-  console.log('Server is running at http://127.0.0.1:8000/');
+server.listen(PORT, () => {
+  console.log(`Server is running at http://127.0.0.1:${PORT}`);
 });
